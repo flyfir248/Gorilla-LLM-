@@ -68,7 +68,7 @@ This project is licensed under the MIT License.
 2. Sample User input
 ![img_1.png](img_1.png)
 
-3.Output Code (this is a subprocess,stored and run in local enviroment)
+3. Output Code (this is a subprocess,stored and run in local enviroment)
 ![img_2.png](img_2.png)
 
 
