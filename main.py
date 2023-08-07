@@ -6,7 +6,6 @@ import subprocess
 openai.api_key = "EMPTY"
 openai.api_base = "http://zanino.millennium.berkeley.edu:8000/v1"
 
-st.set_page_config(page_title="Streamlit LLM App", page_icon="static/res/favicon.png")
 
 # Function to get response from Gorilla Server
 def get_gorilla_response(prompt, model):
