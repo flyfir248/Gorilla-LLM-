@@ -1,21 +1,23 @@
 
-from transformers import pipeline
+from transformers import AutoTokenizer, AutoModelForCausalLM
 
 def load_model():
-    generator = pipeline('text2image', model='Lykon/DreamShaper')
-    return generator
+    tokenizer = AutoTokenizer.from_pretrained('EleutherAI/gpt-j-6B')
+    model = AutoModelForCausalLM.from_pretrained('EleutherAI/gpt-j-6B')
+    return tokenizer, model
 
-def process_data(text, generator):
-    generated_image = generator(text)
-    response = generated_image[0]['image']
+def process_data(text, tokenizer, model):
+    input_ids = tokenizer.encode(text, return_tensors='pt')
+    output = model.generate(input_ids, max_length=1500, do_sample=True, num_return_sequences=1)
+    response = tokenizer.decode(output[0], skip_special_tokens=True)
     return response
 
-text = "This is an example text to generate an image"
+text = 'Write an article about Asia.'
 
-# Load the model
-generator = load_model()
+# Load the model and tokenizer
+tokenizer, model = load_model()
 
-# Generate an image from the text
-response = process_data(text, generator)
+# Process the data
+response = process_data(text, tokenizer, model)
 
 print(response)
