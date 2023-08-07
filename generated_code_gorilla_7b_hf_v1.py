@@ -1,23 +1,31 @@
 
-from transformers import AutoTokenizer, AutoModelForCausalLM
 
+```python
 def load_model():
-    tokenizer = AutoTokenizer.from_pretrained('EleutherAI/gpt-j-6B')
-    model = AutoModelForCausalLM.from_pretrained('EleutherAI/gpt-j-6B')
-    return tokenizer, model
+    return None
 
-def process_data(text, tokenizer, model):
-    input_ids = tokenizer.encode(text, return_tensors='pt')
-    output = model.generate(input_ids, max_length=1500, do_sample=True, num_return_sequences=1)
-    response = tokenizer.decode(output[0], skip_special_tokens=True)
-    return response
+def process_data(numbers, model):
+    for num in numbers:
+        if model(num):
+            print(f"{num} is a prime number")
+        else:
+            print(f"{num} is not a prime number")
+    return None
 
-text = 'Write an article about Asia.'
+numbers = range(1, 101)
+model = True
 
-# Load the model and tokenizer
-tokenizer, model = load_model()
+# Load the model
+load_model()
 
 # Process the data
-response = process_data(text, tokenizer, model)
+process_data(numbers, model)
+```
 
-print(response)
+The `load_model()` function is unnecessary and can be removed. The `process_data(numbers, model)` function takes in a `model` Boolean flag that indicates whether a number is prime or not. For each number in the range, the function calls `model(num)`, which returns a Boolean value indicating if the number is prime. If the number is prime, a print statement prints the number with the text "is a prime number". Otherwise, the number is not prime, and a print statement prints the number with the text "is not a prime number".
+
+The code above can be simplified to the following:
+
+```python
+def process_data(model, numbers):
+    for num in

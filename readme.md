@@ -58,3 +58,17 @@ Contributions to the Gorilla LLM Demo App are welcome! If you find any issues or
 License
 
 This project is licensed under the MIT License.
+
+## Demonstration
+
+### User Interface
+1. User can enter a prompt and also choose the optional models provided by Gorilla
+![img.png](img.png)
+
+2. Sample User input
+![img_1.png](img_1.png)
+
+3.Output Code (this is a subprocess,stored and run in local enviroment)
+![img_2.png](img_2.png)
+
+

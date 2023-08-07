@@ -50,15 +50,15 @@ st.set_page_config(layout="wide")
 # Main function
 def main():
     # Streamlit app title and input prompt
-    st.title("Gorilla LLM Demo App 🦍‍👤")
-    input_prompt = st.text_area("Enter your prompt:")
+    st.title("Gorilla LLM App 🦍‍🐒")
+    input_prompt = st.text_area("Enter User prompt:")
 
     # Model selection dropdown
     model_options = ('gorilla-7b-hf-v1', 'gorilla-mpt-7b-hf-v0')
-    option = st.selectbox('Select a model:', model_options)
+    option = st.selectbox('Select any model:', model_options)
 
     # Button to trigger Gorilla Magic
-    if st.button("Gorilla Magic"):
+    if st.button("Generate"):
         if len(input_prompt) > 0:
             # Split app layout into two columns
             col1, col2 = st.columns([1, 1])
@@ -72,7 +72,7 @@ def main():
             with col2:
                 code_result = extract_code_from_output(result)
                 if option == "gorilla-7b-hf-v1":
-                    st.subheader("Generated Output")
+                    st.subheader("Output Generated")
                     st.code(code_result, language='python')
                 elif option == "gorilla-mpt-7b-hf-v0":
                     lines = code_result.split('\\n')
@@ -85,5 +85,5 @@ def main():
                 run_generated_code(file_path)
 
 
-if __name__ == '__main__':
-    main.run(host='0.0.0.0', port=5000)
+if __name__ == "__main__":
+    main()
