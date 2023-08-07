@@ -1,21 +1,21 @@
 
-from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline
+from transformers import pipeline
 
 def load_model():
-    tokenizer = AutoTokenizer.from_pretrained('d4data/biomedical-ner-all')
-    model = AutoModelForSequenceClassification.from_pretrained('d4data/biomedical-ner-all')
-    return tokenizer, model
+    generator = pipeline('text2image', model='Lykon/DreamShaper')
+    return generator
 
-def process_data(text, tokenizer, model):
-    ner = pipeline('ner', model=model, tokenizer=tokenizer, aggregation_strategy='simple')
-    response = ner(text)
+def process_data(text, generator):
+    generated_image = generator(text)
+    response = generated_image[0]['image']
     return response
 
-text = "The patient's blood pressure was 150/90 mmHg."
-# Load the model and tokenizer
-tokenizer, model = load_model()
+text = "This is an example text to generate an image"
 
-# Process the data
-response = process_data(text, tokenizer, model)
+# Load the model
+generator = load_model()
+
+# Generate an image from the text
+response = process_data(text, generator)
 
 print(response)
